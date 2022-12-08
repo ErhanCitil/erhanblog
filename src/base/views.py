@@ -12,6 +12,7 @@ class Index(generic.ListView):
         context['posts'] = Post.objects.all().order_by('?')[:3]
         return context
 
-class PostDetail(generic.DetaiLView):
+class PostDetail(generic.DetailView):
     template_name = 'post_detail.html'
     model = Post
+    context_object_name = 'data'
