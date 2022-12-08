@@ -3,7 +3,7 @@ from .models import *
 from django.urls import reverse_lazy
 from .views import *
 from django.urls import reverse
-
+from django.test import Client
 from erhanblog.accounts.models import User
 # Create your tests here.
 class PostTest(TestCase):
@@ -49,3 +49,8 @@ class ImageFieldTest(TestCase):
 
     def test_image(self):
         self.assertEqual(self.post.image, 'blogimages/1.jpg')
+
+    def test_image_url(self):
+        response = self.client.get(reverse('post', args=[self.post.pk]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'blogimages/1.jpg')
