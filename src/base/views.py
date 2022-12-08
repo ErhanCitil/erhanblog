@@ -14,11 +14,11 @@ class Index(generic.ListView):
         return context
 
 class PostDetail(generic.DetailView):
-    template_name = 'post_detail.html'
+    template_name = 'blog.html'
     model = Post
     context_object_name = 'post'
 
-class Blog(generic.ListView):
-    template_name = 'blog.html'
+class Blogs(generic.ListView):
+    template_name = 'blogs.html'
     context_object_name = 'posts'
     model = Post
