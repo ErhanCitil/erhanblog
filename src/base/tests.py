@@ -3,55 +3,49 @@ from .models import *
 from django.urls import reverse_lazy
 from .views import *
 from django.urls import reverse
-from django.test import Client
-from django.contrib.auth.models import User
+
+from erhanblog.accounts.models import User
 # Create your tests here.
 class PostTest(TestCase):
     def setUp(self):
-        self.post1 = Post.objects.create(title='test', content='test content')
-        self.post2 = Post.objects.create(title='test2', content='test content2')
-        self.post3 = Post.objects.create(title='test3', content='test content3')
+        self.user = User.objects.create_user(username='test', password='test')
+        self.post = Post.objects.create(title='test', content='test', author=self.user)
+        self.post.save()
 
-    def test_post_exist(self):
-        self.assertEqual(self.post1.title, self.post1.title)
-        self.assertEqual(self.post1.content, self.post1.content)
-        self.assertEqual(self.post2.title, self.post2.title)
-        self.assertEqual(self.post2.content, self.post2.content)
-        self.assertEqual(self.post3.title, self.post3.title)
-        self.assertEqual(self.post3.content, self.post3.content)
+    def test_title(self):
+        self.assertEqual(self.post.title, 'test')
 
-class PostTestView(TestCase):
+    def test_content(self):
+        self.assertEqual(self.post.content, 'test')
+    
+    def test_author(self):
+        self.assertEqual(self.post.author, self.user)
+    
+
+class PostTestViews(TestCase):
     def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password = '12345')
-        self.post1 = Post.objects.create(title='test', content='test content')
-        self.post2 = Post.objects.create(title='test2', content='test content2')
-        self.post3 = Post.objects.create(title='test3', content='test content3')
+        self.user = User.objects.create_user(username='test', password='test')
+        self.post = Post.objects.create(title='test', content='test', author=self.user)
 
-    def test_post_view(self):
-        url = reverse('index')
-        response = self.client.get(url)
+    def test_index(self):
+        response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_post_detail_view(self):
-        url = reverse('post', args=[self.post1.pk])
-        response = self.client.get(url)
+    def test_post_view(self):
+        response = self.client.get(reverse('post', args=[self.post.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog.html')
 
-    def test_post_blogs_view(self):
-        url = reverse('blogs')
-        response = self.client.get(url)
+    def test_blogs(self):
+        response = self.client.get(reverse('blogs'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blogs.html')
 
 class ImageFieldTest(TestCase):
-    def test_image_field(self):
-        post = Post.objects.create(title='test', content='test content')
-        self.assertFalse(post.image)
+    def setUp(self):
+        self.user = User.objects.create_user(username='test', password='test')
+        self.post = Post.objects.create(title='test', content='test', author=self.user, image='blogimages/1.jpg')
 
-    def test_image_field_upload(self):
-        post = Post.objects.create(title='test', content='test content')
-        post.image = 'test.jpg'
-        self.assertEqual(post.image, 'test.jpg')
+    def test_image(self):
+        self.assertEqual(self.post.image, 'blogimages/1.jpg')
