@@ -52,9 +52,9 @@ USE_THOUSAND_SEPARATOR = True
 DATABASES = {
     "default": {
         "ENGINE": config("DB_ENGINE", "django.db.backends.postgresql"),
-        "NAME": config("DB_NAME", "erhanblog"),
-        "USER": config("DB_USER", "erhanblog"),
-        "PASSWORD": config("DB_PASSWORD", "erhanblog"),
+        "NAME": config("DB_NAME", "postgres"),
+        "USER": config("DB_USER", "postgres"),
+        "PASSWORD": config("DB_PASSWORD", "maykinmedia"),
         "HOST": config("DB_HOST", "localhost"),
         "PORT": config("DB_PORT", 5432),
     }
@@ -114,6 +114,7 @@ INSTALLED_APPS = [
     # Project applications.
     "erhanblog.accounts",
     "erhanblog.utils",
+    "base.apps.BaseConfig",
 ]
 
 MIDDLEWARE = [
