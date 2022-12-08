@@ -7,10 +7,13 @@ from django.urls import reverse_lazy
 import sentry_sdk
 
 from .utils import config, get_sentry_integrations
+from dotenv import load_dotenv
 
 # Build paths inside the project, so further paths can be defined relative to
 # the code root.
 
+# Load environment variables from .env file
+load_dotenv()
 DJANGO_PROJECT_DIR = Path(__file__).resolve().parent.parent
 
 BASE_DIR = DJANGO_PROJECT_DIR.parent.parent
@@ -52,11 +55,11 @@ USE_THOUSAND_SEPARATOR = True
 DATABASES = {
     "default": {
         "ENGINE": config("DB_ENGINE", "django.db.backends.postgresql"),
-        "NAME": config("DB_NAME", "postgres"),
-        "USER": config("DB_USER", "postgres"),
-        "PASSWORD": config("DB_PASSWORD", "maykinmedia"),
-        "HOST": config("DB_HOST", "localhost"),
-        "PORT": config("DB_PORT", 5432),
+        "NAME": str(os.getenv("DB_NAME")),
+        "USER": str(os.getenv("DB_USER")),
+        "PASSWORD": str(os.getenv("DB_PASSWORD")),
+        "HOST": str(os.getenv("DB_HOST")),
+        "PORT": str(os.getenv("DB_PORT")),
     }
 }
 
