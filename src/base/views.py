@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Post
+from .models import *
+from django.urls import reverse_lazy
 # Create your views here.
 class Index(generic.ListView):
     template_name = 'index.html'
@@ -15,4 +16,9 @@ class Index(generic.ListView):
 class PostDetail(generic.DetailView):
     template_name = 'post_detail.html'
     model = Post
-    context_object_name = 'data'
+    context_object_name = 'post'
+
+class Blog(generic.ListView):
+    template_name = 'blog.html'
+    context_object_name = 'posts'
+    model = Post

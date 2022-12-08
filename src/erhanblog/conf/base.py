@@ -115,6 +115,7 @@ INSTALLED_APPS = [
     "erhanblog.accounts",
     "erhanblog.utils",
     "base.apps.BaseConfig",
+    "form.apps.FormConfig",
 ]
 
 MIDDLEWARE = [

@@ -38,6 +38,7 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("", include("base.urls")),
+    path("", include("form.urls")),
 
 ]
 
