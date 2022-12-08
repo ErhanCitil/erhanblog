@@ -20,7 +20,8 @@
   "license": "UNLICENSED",
   "homepage": "https://maykinmedia.nl",
   "dependencies": {
-    "microscope-sass": "latest"
+    "microscope-sass": "latest",
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -46,6 +47,7 @@
     "sass-loader": "latest",
     "simulant": "latest",
     "sinon": "latest",
+    "tailwindcss": "^3.2.4",
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-cli": "latest",
