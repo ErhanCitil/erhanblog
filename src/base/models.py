@@ -16,3 +16,7 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def loop_authors(self):
+        for i in self.author.all():
+            return i
