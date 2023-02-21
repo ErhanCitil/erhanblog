@@ -4,7 +4,7 @@ from .models import *
 from django.urls import reverse_lazy
 # Create your views here.
 class Index(generic.ListView):
-    template_name = 'index.html'
+    template_name = 'base/index.html'
     context_object_name = 'posts'
     model = Article
 
@@ -14,11 +14,11 @@ class Index(generic.ListView):
         return context
 
 class PostDetail(generic.DetailView):
-    template_name = 'blog.html'
+    template_name = 'base/blog.html'
     model = Article
     context_object_name = 'post'
 
 class Blogs(generic.ListView):
-    template_name = 'blogs.html'
+    template_name = 'base/blogs.html'
     context_object_name = 'posts'
     model = Article
