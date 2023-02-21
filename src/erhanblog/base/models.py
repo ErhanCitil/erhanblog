@@ -2,10 +2,10 @@ from django.db import models
 from django.conf import settings
 # Create your models here.
 class Author(models.Model):
-    author_name = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.author_name.username
+        return self.name.username
 
 class Article(models.Model):
     title = models.CharField(max_length = 1000)
