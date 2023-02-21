@@ -37,8 +37,8 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
-    path("", include("base.urls")),
-    path("", include("form.urls")),
+    path("", include("erhanblog.base.urls")),
+    path("", include("erhanblog.form.urls")),
 
 ]
 

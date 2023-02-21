@@ -117,8 +117,8 @@ INSTALLED_APPS = [
     # Project applications.
     "erhanblog.accounts",
     "erhanblog.utils",
-    "base.apps.BaseConfig",
-    "form.apps.FormConfig",
+    "erhanblog.base.apps.BaseConfig",
+    "erhanblog.form.apps.FormConfig",
 ]
 
 MIDDLEWARE = [
