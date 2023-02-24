@@ -31,3 +31,7 @@ class CreateArticle(LoginRequiredMixin, generic.CreateView):
     model = Article
     form_class = CreateArticleForm
     success_url = reverse_lazy('index')
+
+class ArticleList(LoginRequiredMixin, generic.ListView):
+    template_name = 'base/article_list.html'
+    model = Article
