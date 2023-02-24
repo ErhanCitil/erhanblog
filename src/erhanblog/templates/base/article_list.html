@@ -19,7 +19,7 @@
                      {{article.title}}
                   </p>
                </div>
-               <a href='#' class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+               <a href="{% url 'update-article' article.id %}" class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                   Bewerken
                </a>
             </div>

@@ -35,3 +35,10 @@ class CreateArticle(LoginRequiredMixin, generic.CreateView):
 class ArticleList(LoginRequiredMixin, generic.ListView):
     template_name = 'base/article_list.html'
     model = Article
+
+class UpdateArticle(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'base/update_article.html'
+    model = Article
+    form_class = CreateArticleForm
+    success_url = reverse_lazy('article-list')
+    context_object_name = 'article'
