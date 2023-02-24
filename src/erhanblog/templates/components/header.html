@@ -1,10 +1,8 @@
 <nav class=" bg-gray-800">
     <dv class="container p-6 mx-auto ">
-        <div>
-            {% load static %}
-            <img src="{% static 'img/index.png' %}" alt="ErhanBlog logo" class="w-20 h-20 ">
-        </div>
         <div class="flex items-center justify-center mt-6 text-gray-300 text-gray-300">
+            {% load static %}
+            <img src="{% static 'img/index.png' %}" alt="ErhanBlog logo" class="w-20 h-20">
             <a href="{% url "index" %}" class="border-b-2 border-transparent hover:text-gray-300 hover:border-blue-500 mx-1.5 sm:mx-6">Home</a>
 
             <a href="{% url "blogs" %}" class="border-b-2 border-transparent hover:text-gray-300 hover:border-blue-500 mx-1.5 sm:mx-6">Blogs</a>
