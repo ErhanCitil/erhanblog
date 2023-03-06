@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import *
 from django.urls import reverse_lazy
-from erhanblog.form.forms import CreateArticleForm
+from erhanblog.form.forms import CreateArticleForm, UpdateArticleForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
@@ -31,3 +31,14 @@ class CreateArticle(LoginRequiredMixin, generic.CreateView):
     model = Article
     form_class = CreateArticleForm
     success_url = reverse_lazy('index')
+
+class ArticleList(LoginRequiredMixin, generic.ListView):
+    template_name = 'base/article_list.html'
+    model = Article
+
+class UpdateArticle(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'base/update_article.html'
+    model = Article
+    form_class = UpdateArticleForm
+    success_url = reverse_lazy('article-list')
+    context_object_name = 'article'
